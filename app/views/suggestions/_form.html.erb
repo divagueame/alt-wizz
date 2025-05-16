@@ -1,0 +1,27 @@
+<%= form_with(model: suggestion) do |form| %>
+  <% if suggestion.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(suggestion.errors.count, "error") %> prohibited this suggestion from being saved:</h2>
+
+      <ul>
+        <% suggestion.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :suggestion, style: "display: block" %>
+    <%= form.text_field :suggestion %>
+  </div>
+
+  <div>
+    <%= form.label :product_id, style: "display: block" %>
+    <%= form.text_field :product_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

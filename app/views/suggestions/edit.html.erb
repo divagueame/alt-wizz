@@ -1,0 +1,12 @@
+<% content_for :title, "Editing suggestion" %>
+
+<h1>Editing suggestion</h1>
+
+<%= render "form", suggestion: @suggestion %>
+
+<br>
+
+<div>
+  <%= link_to "Show this suggestion", @suggestion %> |
+  <%= link_to "Back to suggestions", suggestions_path %>
+</div>

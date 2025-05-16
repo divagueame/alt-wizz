@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Suggestions" %>
+
+<h1>Suggestions</h1>
+
+<div id="suggestions">
+  <% @suggestions.each do |suggestion| %>
+    <%= render suggestion %>
+    <p>
+      <%= link_to "Show this suggestion", suggestion %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New suggestion", new_suggestion_path %>

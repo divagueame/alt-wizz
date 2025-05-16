@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @suggestion %>
+
+<div>
+  <%= link_to "Edit this suggestion", edit_suggestion_path(@suggestion) %> |
+  <%= link_to "Back to suggestions", suggestions_path %>
+
+  <%= button_to "Destroy this suggestion", @suggestion, method: :delete %>
+</div>
