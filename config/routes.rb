@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "products#index"
   get "/refresh", to: "suggestions#refresh"
+  mount MissionControl::Jobs::Engine, at: "/jobs"
 end
