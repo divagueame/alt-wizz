@@ -7,6 +7,12 @@ class SuggestionsController < ApplicationController
   end
 
   # GET /suggestions/1 or /suggestions/1.json
+  def refresh
+    Suggestion.all.destroy_all
+    GenerateSuggestionsJob.perform_later
+    redirect_to root_path, notice: "Suggestions are being generated. Go play with your dog meanwhile..."
+  end
+
   def show
   end
 

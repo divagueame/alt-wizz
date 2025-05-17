@@ -1,14 +1,9 @@
-<div id="<%= dom_id product %>" class="flex gap-8">
-  <%= image_tag product.image.variant(:basic), class: "rounded shadow-sm object-cover h-36 w-72" if product.image.attached? %>
+<turbo-frame id="<%= dom_id product %>">
+  <div class="flex gap-8">
+    <%= image_tag product.image.variant(:basic), class: "rounded shadow-sm object-cover h-72 w-128" if product.image.attached? %>
 
-  <div>
-    <h2>
-      <%= link_to product.name, product %>
-    </h2>
-
-    <p>
-    <strong>Alt:</strong>
-    <%= product.alt %>
-    </p>
+    <div class="flex-grow">
+      <%= render "form", product: product %>
+    </div>
   </div>
-</div>
+</turbo-frame> 

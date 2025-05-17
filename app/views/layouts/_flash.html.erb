@@ -1,0 +1,7 @@
+<div class="fixed bottom-12 left-4">
+  <% flash.each do |flash_type, message| %>
+    <div class="outline outline-sky-200 bg-sky-50 rounded px-12 py-1 shadow">
+      <%= message %>
+    </div>
+  <% end %>
+</div>

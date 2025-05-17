@@ -1,8 +1,6 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Products" %>
 
-<div id="products" class="container flex gap-24 flex-col">
+<div id="products" class="container flex gap-48 flex-col">
   <% @products.each do |product| %>
     <%= render product %>
   <% end %>

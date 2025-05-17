@@ -422,7 +422,7 @@ DEPENDENCIES
   capybara
   debug
   faker (~> 3.5)
-  image_processing (~> 1.2)
+  image_processing
   importmap-rails
   jbuilder
   kamal

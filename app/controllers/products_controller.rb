@@ -36,14 +36,12 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: "Product was successfully updated." }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.update(product_params)
+      flash.now[:notice] = "Alt text saved: #{@product.alt}"
+      render turbo_stream: turbo_stream.update("flash", partial: "layouts/flash", locals: { flash: flash }) 
+    else
+      flash.now[:error] = "Error! The alt text was not saved"
+      render turbo_stream: turbo_stream.replace("flash", partial: "layouts/flash", locals: { flash: flash }) 
     end
   end
 

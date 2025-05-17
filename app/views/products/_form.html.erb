@@ -1,4 +1,4 @@
-<%= form_with(model: product) do |form| %>
+<%= form_with(model: product, data: { controller: "suggestion-selector" }) do |form| %>
   <% if product.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -12,17 +12,33 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <h2 class="text-4xl mb-3">
+      <%= link_to product.name, product %>
+    </h2>
+    <p><%= product.description %></p>
   </div>
 
-  <div>
-    <%= form.label :alt, style: "display: block" %>
-    <%= form.text_field :alt %>
-  </div>
+  <% if product.image.attached? %>
+    <div class="my-4">
+      <h3 class="text-slate-500">Attachment:</h3>
+      <p class="font-bold"><%= product.image.filename.to_s %></p>
+    </div>
+  <% end %>
 
+  <%= form.label :alt, class: "text-slate-500" %>
+  <%= form.text_field :alt, class: "border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500", data: { 'suggestion-selector-target': "alt"}  %>
 
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit "Save", class: "bg-blue-200 hover:bg-blue-300 hover:cursor-pointer px-16 py-1 rounded my-2" %>
+  
+  <% if product.suggestions.any? %>
+    <div class="mt-12 bg-sky-50 rounded p-3">
+      <h3 class="text-slate-500">AI Alt text suggestions:</h3>
+      <% product.suggestions.each do |suggestion| %>
+        <p class="mb-2 outline px-4 py-1 rounded outline-slate-200 hover:cursor-pointer bg-white hover:bg-blue-200" data-action="click->suggestion-selector#select">
+        <%= suggestion.suggestion %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+
 <% end %>
