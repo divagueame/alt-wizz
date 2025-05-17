@@ -1,6 +1,6 @@
 require 'faker'
 # Path to the folder containing images
-image_folder = Rails.root.join('db', 'seed_image')
+image_folder = Rails.root.join('db', 'seed_images')
 
 # Ensure the folder exists
 unless Dir.exist?(image_folder)

@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+
   <div>
     <h2 class="text-4xl mb-3">
       <%= link_to product.name, product %>
@@ -26,18 +27,21 @@
   <% end %>
 
   <%= form.label :alt, class: "text-slate-500" %>
-  <%= form.text_field :alt, class: "border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500", data: { 'suggestion-selector-target': "alt"}  %>
-
+  <%= form.text_field :alt, class: "border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500", data: { 'suggestion-selector-target': "input"}  %>
   <%= form.submit "Save", class: "bg-blue-200 hover:bg-blue-300 hover:cursor-pointer px-16 py-1 rounded my-2" %>
   
   <% if product.suggestions.any? %>
     <div class="mt-12 bg-sky-50 rounded p-3">
       <h3 class="text-slate-500">AI Alt text suggestions:</h3>
+      <div class="flex flex-col gap-2">
       <% product.suggestions.each do |suggestion| %>
-        <p class="mb-2 outline px-4 py-1 rounded outline-slate-200 hover:cursor-pointer bg-white hover:bg-blue-200" data-action="click->suggestion-selector#select">
-        <%= suggestion.suggestion %>
-        </p>
+        <div class="flex gap-4">
+          <p class="w-full outline px-4 py-1 rounded outline-slate-200 hover:cursor-pointer bg-white hover:bg-blue-200" data-action="click->suggestion-selector#select">
+          <%= suggestion.suggestion %>
+          </p>
+        </div>
       <% end %>
+        </div>
     </div>
   <% end %>
 
