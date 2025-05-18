@@ -20,11 +20,15 @@ class GenerateSuggestionsJob < ApplicationJob
     
     Product.find_each(batch_size: 100) do |product|
       alt_texts = []
+      # model = 'smollm:135m'
+      model = 'mistral'
+      # model = 'gemma3'
+
 
       while alt_texts.size < 3 do
         result = client.generate(
-          { model: 'smollm:135m',
-            prompt: "Please provide 3 different Alt texts for this product optimized for SEO as a JSON array of strings. The product name is '#{product.name}'. Important: do not include any of these symbols \" $ ! [] .Respond using JSON",
+          { model: model,
+            prompt: "Only use German please. Please provide 3 different Alt texts for this product optimized for SEO as a JSON array of strings. The product name is '#{product.name}'. Important: do not include any of these symbols \" $ ! [] .Respond using JSON",
             "format": "json",
             stream: false }
         )
@@ -48,6 +52,4 @@ class GenerateSuggestionsJob < ApplicationJob
   end
 
 
-  def query_llm
-  end
 end

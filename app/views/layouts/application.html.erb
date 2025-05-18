@@ -26,17 +26,30 @@
     <nav class="bg-purple-100 ">
       <div class='container flex justify-between items-center mx-auto'>
         <h1 class="text-2xl font-bold">Wizz Alt Tool - Total Products: <%= Product.count %></h1>
-        <% if  SolidQueue::Job.all.where(finished_at: nil).any? %>
-          <div class="m-2 p-2 w-8 h-8 rounded-full animate-spin border-8 border-solid border-sky-500 border-t-transparent"></div>
-        <% else %>
-          <%= link_to "Refresh suggestions" , refresh_path, class: "p-4 rounded font-bold", data: { turbo_prefetch: false } %>
-        <% end %>
+        <div class="flex items-center gap-8">
+          <% if @compact_view %>
+            <%= link_to  products_path, class: "p-2 rounded font-bold hover:outline outline-purple-500"  do %>
+              <%= inline_svg_tag "expanded.svg", class: "w-16 h-8" %>
+            <% end %>
+          <% else %>
+            <%= link_to  products_path(view: 'compact'), class: "p-2 rounded font-bold hover:outline outline-purple-500"  do %>
+              <%= inline_svg_tag "compact.svg", class: "w-16 h-8" %>
+            <% end %>
+          <% end %>
+
+          <% if  SolidQueue::Job.all.where(finished_at: nil).any? %>
+            <div class="m-2 p-2 w-8 h-8 rounded-full animate-spin border-8 border-solid border-sky-500 border-t-transparent"></div>
+          <% else %>
+            <%= link_to "Refresh suggestions" , refresh_path, class: "p-4 rounded font-bold hover:outline outline-purple-500", data: { turbo_prefetch: false } %>
+          <% end %>
+        </div>
       </div>
     </nav>
 
     <%= turbo_frame_tag "flash" do %>
       <%= render "layouts/flash" %>
     <% end %>
+    <%= turbo_frame_tag "sidepanel" %>
 
     <main class="container mx-auto mt-28 px-5 ">
       <%= yield %>

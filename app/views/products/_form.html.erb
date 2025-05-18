@@ -14,14 +14,14 @@
 
   <div>
     <h2 class="text-4xl mb-3">
-      <%= link_to product.name, product %>
+      <%= product.name %>
     </h2>
     <p><%= product.description %></p>
   </div>
 
   <% if product.image.attached? %>
     <div class="my-4">
-      <h3 class="text-slate-500">Attachment:</h3>
+      <h3 class="text-slate-500">Filename:</h3>
       <p class="font-bold"><%= product.image.filename.to_s %></p>
     </div>
   <% end %>

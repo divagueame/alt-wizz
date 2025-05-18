@@ -1,8 +1,16 @@
 <% content_for :title, "Products" %>
 
-<div id="products" class="container flex gap-48 flex-col">
-  <% @products.each do |product| %>
-    <%= render product %>
-  <% end %>
-</div>
-
+<% if @compact_view %>
+  <h1 class="ml-32 text-2xl font-bold">Alt texts:</h1>
+  <div id="compact_products" class="container flex gap-8 flex-col">
+    <% @products.each do |product| %>
+      <%= render "compact_form", product: product %>
+    <% end %>
+  </div>
+<% else %>
+  <div id="products" class="container flex gap-48 flex-col">
+    <% @products.each do |product| %>
+      <%= render product %>
+    <% end %>
+  </div>
+<% end %>

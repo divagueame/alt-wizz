@@ -1,0 +1,21 @@
+<%= form_with(model: product, class: "flex gap-4 items-center" ) do |form| %>
+  <% if product.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= link_to product, data: { turbo_frame: "sidepanel"}, tabindex: "-1" do %>
+    <%= image_tag product.image.variant(:basic), class: "hover:opacity-60 rounded shadow-sm object-cover h-18 min-w-28" if product.image.attached? %>
+  <% end %>
+  <%= form.text_field :alt, class: "border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500", data: { 'suggestion-selector-target': "input"}  %>
+  <%= form.submit "Save", class: "bg-blue-200 hover:bg-blue-300 hover:cursor-pointer px-16 py-1 rounded my-2" %>
+
+<% end %>

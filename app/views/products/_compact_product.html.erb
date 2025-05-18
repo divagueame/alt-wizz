@@ -1,0 +1,18 @@
+<turbo-frame id="<%= dom_id product %>">
+  <div class="flex gap-12 items-center">
+    <%= image_tag product.image.variant(:basic), class: "rounded shadow-sm object-cover h-72  w-96" if product.image.attached? %>
+    <div class="flex gap-3 flex-col">
+      <h1 class="font-bold text-2xl">Name: <%= product.name %></h1>
+
+      <div class="inline ouline">
+        <h3 class="text-slate-500">Description:</h3>
+        <p class="font-bold"><%= product.description%></p>
+      </div>
+
+      <div class="inline ouline">
+        <h3 class="text-slate-500">Filename:</h3>
+        <p class="font-bold"><%= product.image.filename.to_s %></p>
+      </div>
+    </div>
+  </div>
+</turbo-frame> 

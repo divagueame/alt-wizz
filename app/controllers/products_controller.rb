@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
+    @compact_view = params[:view]
     @products = Product.all
   end
 
